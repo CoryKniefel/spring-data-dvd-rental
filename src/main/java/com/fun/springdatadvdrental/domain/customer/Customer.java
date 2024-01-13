@@ -15,7 +15,6 @@ public class Customer {
     @Column(name = "customer_id")
     private long id;
 
-
     @ManyToOne
     @JoinColumn(name = "store_id")
     private Store store;

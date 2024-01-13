@@ -1,4 +1,4 @@
-package com.fun.springdatadvdrental.domain.customer;
+package com.fun.springdatadvdrental.domain.rental;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -17,30 +16,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
-public class CustomerIntegrationIT {
+public class RentalRepositoryIT {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
-    private CustomerRepository customerRepository;
+    private RentalRepository rentalRepository;
 
     @BeforeEach
     public void setup() {
-        // Create and save a customer
-        Customer customer = new Customer();
-        // set properties for customer
-        customer.setFirstName("John");
-        customer.setLastName("Doe");
-        // ... set other properties
-        customerRepository.save(customer);
+        Rental rental = new Rental();
+        rentalRepository.save(rental);
     }
 
     @Test
     public void testGetCustomers() throws Exception {
-        mockMvc.perform(get("/customers"))
+        mockMvc.perform(get("/rentals"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$._embedded.customers", hasSize(1)));
+                .andExpect(jsonPath("$._embedded.rentals", hasSize(1)));
     }
 }
-
