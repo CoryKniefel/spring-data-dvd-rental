@@ -1,5 +1,6 @@
-package com.fun.springdatadvdrental.domain.customer;
+package com.fun.springdatadvdrental.domain.inventory;
 
+import com.fun.springdatadvdrental.domain.customer.Customer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,27 +17,25 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
-public class CustomerRepositoryIT {
+public class InventoryRepositoryIT {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
-    private CustomerRepository customerRepository;
+    private InventoryRepository inventoryRepository;
 
     @BeforeEach
     public void setup() {
-        Customer customer = new Customer();
-        customer.setFirstName("John");
-        customer.setLastName("Doe");
-        customerRepository.save(customer);
+        inventoryRepository.save(new Inventory());
+
+
     }
 
     @Test
     public void testGetCustomers() throws Exception {
-        mockMvc.perform(get("/customers"))
+        mockMvc.perform(get("/inventories"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$._embedded.customers", hasSize(1)));
+                .andExpect(jsonPath("$._embedded.inventories", hasSize(1)));
     }
 }
-

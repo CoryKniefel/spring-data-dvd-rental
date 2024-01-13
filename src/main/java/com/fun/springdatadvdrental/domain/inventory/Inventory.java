@@ -1,4 +1,4 @@
-package com.fun.springdatadvdrental.domain.entities;
+package com.fun.springdatadvdrental.domain.inventory;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -11,4 +11,6 @@ public class Inventory {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "inventory_id")
     private long id;
+
+
 }

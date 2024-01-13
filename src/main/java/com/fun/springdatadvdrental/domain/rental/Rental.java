@@ -1,7 +1,7 @@
 package com.fun.springdatadvdrental.domain.rental;
 
 import com.fun.springdatadvdrental.domain.customer.Customer;
-import com.fun.springdatadvdrental.domain.entities.Inventory;
+import com.fun.springdatadvdrental.domain.inventory.Inventory;
 import com.fun.springdatadvdrental.domain.entities.Staff;
 import jakarta.persistence.*;
 import lombok.Data;
