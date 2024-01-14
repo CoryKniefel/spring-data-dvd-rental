@@ -1,6 +1,6 @@
 package com.fun.springdatadvdrental.domain.customer;
 
-import com.fun.springdatadvdrental.domain.entities.Store;
+import com.fun.springdatadvdrental.domain.store.Store;
 import jakarta.persistence.*;
 import lombok.Data;
 
