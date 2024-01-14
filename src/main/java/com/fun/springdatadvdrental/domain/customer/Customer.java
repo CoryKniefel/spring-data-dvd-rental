@@ -28,6 +28,7 @@ public class Customer {
     public String email;
 
     private boolean activebool;
+
     private int active;
 
     @Column(name = "create_date")

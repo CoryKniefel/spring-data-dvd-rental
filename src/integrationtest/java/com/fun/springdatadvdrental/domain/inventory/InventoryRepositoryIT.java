@@ -33,7 +33,7 @@ public class InventoryRepositoryIT {
     }
 
     @Test
-    public void testGetCustomers() throws Exception {
+    public void testGetInventory() throws Exception {
         mockMvc.perform(get("/inventories"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$._embedded.inventories", hasSize(1)));

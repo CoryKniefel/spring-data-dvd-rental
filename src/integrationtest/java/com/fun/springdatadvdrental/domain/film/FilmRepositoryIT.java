@@ -1,4 +1,4 @@
-package com.fun.springdatadvdrental.domain.rental;
+package com.fun.springdatadvdrental.domain.film;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,24 +16,25 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
-public class RentalRepositoryIT {
+public class FilmRepositoryIT {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
-    private RentalRepository rentalRepository;
+    private FilmRepository filmRepository;
 
     @BeforeEach
     public void setup() {
-        Rental rental = new Rental();
-        rentalRepository.save(rental);
+        filmRepository.save(new Film());
     }
 
+
+
     @Test
-    public void testGetRentals() throws Exception {
-        mockMvc.perform(get("/rentals"))
+    public void testGetFilms() throws Exception {
+        mockMvc.perform(get("/films"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$._embedded.rentals", hasSize(1)));
+                .andExpect(jsonPath("$._embedded.films", hasSize(1)));
     }
 }
