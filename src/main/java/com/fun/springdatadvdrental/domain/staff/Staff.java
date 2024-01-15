@@ -1,5 +1,6 @@
-package com.fun.springdatadvdrental.domain.entities;
+package com.fun.springdatadvdrental.domain.staff;
 
+import com.fun.springdatadvdrental.domain.address.Address;
 import com.fun.springdatadvdrental.domain.store.Store;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -35,6 +36,10 @@ public class Staff {
     private LocalDateTime lastUpdate;
 
     private byte[] picture;
+
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
 
 
 }

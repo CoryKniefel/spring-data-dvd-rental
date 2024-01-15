@@ -1,7 +1,5 @@
 package com.fun.springdatadvdrental.domain.staff;
 
-import com.fun.springdatadvdrental.domain.entities.Staff;
-import com.fun.springdatadvdrental.domain.entities.StaffRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

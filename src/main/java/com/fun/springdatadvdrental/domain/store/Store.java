@@ -1,5 +1,6 @@
 package com.fun.springdatadvdrental.domain.store;
 
+import com.fun.springdatadvdrental.domain.address.Address;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -12,8 +13,9 @@ public class Store {
     @Column(name = "store_id")
     private long storeId;
 
-    @Column(name = "address_id")
-    private long addressId;
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
 
     @Column(name = "manager_staff_id")
     private long staffId;

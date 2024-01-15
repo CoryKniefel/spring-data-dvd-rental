@@ -1,4 +1,4 @@
-package com.fun.springdatadvdrental.domain.entities;
+package com.fun.springdatadvdrental.domain.staff;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;

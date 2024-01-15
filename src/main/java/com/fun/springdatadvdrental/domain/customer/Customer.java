@@ -1,5 +1,6 @@
 package com.fun.springdatadvdrental.domain.customer;
 
+import com.fun.springdatadvdrental.domain.address.Address;
 import com.fun.springdatadvdrental.domain.store.Store;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -36,6 +37,10 @@ public class Customer {
 
     @Column(name = "last_update")
     public LocalDate lastUpdate;
+
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
 
 
 
