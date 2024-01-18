@@ -21,10 +21,10 @@ public class Customer {
     private Store store;
 
     @Column(name = "first_name")
-    public String firstName;
+    private String firstName;
 
     @Column(name = "last_name")
-    public String lastName;
+    private String lastName;
 
     public String email;
 
@@ -33,10 +33,10 @@ public class Customer {
     private int active;
 
     @Column(name = "create_date")
-    public LocalDate createdDate;
+    private LocalDate createdDate;
 
     @Column(name = "last_update")
-    public LocalDate lastUpdate;
+    private LocalDate lastUpdate;
 
     @ManyToOne
     @JoinColumn(name = "address_id")
