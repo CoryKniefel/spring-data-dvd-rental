@@ -1,5 +1,8 @@
 package com.fun.springdatadvdrental.domain.customer;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class CustomerDTOMapper {
 
 
