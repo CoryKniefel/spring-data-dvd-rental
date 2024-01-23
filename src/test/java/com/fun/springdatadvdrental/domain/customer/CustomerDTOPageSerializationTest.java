@@ -19,7 +19,7 @@ public class CustomerDTOPageSerializationTest {
     public void testPageSerialization() throws Exception {
         CustomerDTO mockCustomerDTO = CustomerDTO
                 .builder()
-                .id(1)
+                .id(1l)
                 .firstName("Jay")
                 .lastName("Z")
                 .build();

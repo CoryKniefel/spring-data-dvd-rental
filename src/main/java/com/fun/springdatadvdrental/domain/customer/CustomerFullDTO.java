@@ -1,17 +1,23 @@
 package com.fun.springdatadvdrental.domain.customer;
 
+
+import com.fun.springdatadvdrental.domain.address.AddressDTO;
+import com.fun.springdatadvdrental.domain.store.StoreDTO;
 import lombok.Builder;
 import lombok.extern.jackson.Jacksonized;
 
-
 /**
- * Lightweight DTO of Customer entity. Takes advantage of lazily loaded entities, to avoid looking up Address and Store.
+ * Full DTO of Customer entity.
  */
 @Builder
 @Jacksonized
-public class CustomerDTO {
+public class CustomerFullDTO {
 
     public final Long id;
+
+    public final StoreDTO store;
+
+    public final AddressDTO address;
 
     public final String firstName;
 

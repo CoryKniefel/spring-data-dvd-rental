@@ -2,10 +2,18 @@ package com.fun.springdatadvdrental.domain.store;
 
 import com.fun.springdatadvdrental.domain.address.Address;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Store {
 
     @Id
@@ -21,6 +29,6 @@ public class Store {
     private long staffId;
 
     @Column(name = "last_update")
-    private LocalDate lastUpdate;
+    private LocalDateTime lastUpdate;
 
 }
