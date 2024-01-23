@@ -12,9 +12,10 @@ import java.time.LocalDate;
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_customer_id_seq")
+    @SequenceGenerator(name = "customer_customer_id_seq", sequenceName = "customer_customer_id_seq", allocationSize = 1)
     @Column(name = "customer_id")
-    private long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "store_id")
@@ -32,10 +33,10 @@ public class Customer {
 
     private int active;
 
-    @Column(name = "create_date")
+    @Column(name = "create_date", insertable = false, updatable = false)
     private LocalDate createdDate;
 
-    @Column(name = "last_update")
+    @Column(name = "last_update", insertable = false, updatable = false)
     private LocalDate lastUpdate;
 
     @ManyToOne

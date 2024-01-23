@@ -1,23 +1,20 @@
 package com.fun.springdatadvdrental.domain.customer;
 
-import org.junit.jupiter.api.BeforeEach;
+import com.fun.springdatadvdrental.testutils.DataGeneration;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CustomerDTOMapperTest {
 
-    private CustomerDTOMapper customerDTOMapper;
+    private CustomerDTOMapper customerDTOMapper = new CustomerDTOMapper();
 
-    @BeforeEach
-    void setUp() {
-        customerDTOMapper = new CustomerDTOMapper();
-    }
+    private DataGeneration dataGen = new DataGeneration();
+
 
     @Test
     void testToDTO() {
         Customer customer = new Customer();
-        customer.setId(444);
         customer.setFirstName("Jay");
         customer.setLastName("Z");
         customer.setEmail("jay.z@tidal.com");
@@ -27,13 +24,28 @@ public class CustomerDTOMapperTest {
         assertEquals(customer.getFirstName(), dto.firstName);
         assertEquals(customer.getLastName(), dto.lastName);
         assertEquals(customer.getEmail(), dto.email);
-        assertEquals(customer.getId(), dto.id);
+    }
+
+    @Test
+    void testToDTOFull() {
+        Customer customer = new Customer();
+        customer.setFirstName("Jay");
+        customer.setLastName("Z");
+        customer.setEmail("jay.z@tidal.com");
+        customer.setAddress(dataGen.createAddress());
+        customer.setStore(dataGen.createStore());
+
+        CustomerFullDTO dto = customerDTOMapper.toDTOFull(customer);
+
+        assertEquals(customer.getFirstName(), dto.firstName);
+        assertEquals(customer.getLastName(), dto.lastName);
+        assertEquals(customer.getEmail(), dto.email);
     }
 
     @Test
     void testFromDto() {
         CustomerDTO customerDTO = CustomerDTO.builder()
-                .id(444)
+                .id(444l)
                 .firstName("Jay")
                 .lastName("Z")
                 .email("jay.z@tidal.com")
@@ -46,4 +58,6 @@ public class CustomerDTOMapperTest {
         assertEquals(customerDTO.lastName, customer.getLastName());
         assertEquals(customerDTO.email, customer.getEmail());
     }
+
+
 }

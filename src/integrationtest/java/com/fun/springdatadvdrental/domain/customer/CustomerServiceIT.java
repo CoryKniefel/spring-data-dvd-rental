@@ -1,23 +1,25 @@
 package com.fun.springdatadvdrental.domain.customer;
 
+import com.fun.springdatadvdrental.testutils.DataGeneration;
+import com.fun.springdatadvdrental.testutils.ITUtils;
+import jakarta.validation.ConstraintViolationException;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ActiveProfiles("test")
 @SpringBootTest
-@Transactional
 public class CustomerServiceIT {
 
     @Autowired
@@ -25,6 +27,12 @@ public class CustomerServiceIT {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private DataGeneration dataGeneration;
+
+    @Autowired
+    private ITUtils itUtils;
 
     @Test
     public void testGetCustomersWithPagination() throws Exception {
@@ -70,6 +78,38 @@ public class CustomerServiceIT {
         assertTrue(customerDTOOptional.isEmpty());
     }
 
+    @Test
+    public void testSaveCustomerValid() {
+        itUtils.initialize();
+        CustomerCreateDTO customerCreateDTO = dataGeneration.customerCreateDTO();
+
+        CustomerFullDTO result = customerService.createCustomer(customerCreateDTO);
+
+        assertEquals(customerCreateDTO.firstName, result.firstName);
+        assertEquals(customerCreateDTO.lastName, result.lastName);
+        assertEquals(customerCreateDTO.email, result.email);
+        assertTrue(result.id > -1);
+
+
+    }
+
+    @Test
+    public void testSaveCustomerInvalid() {
+        CustomerCreateDTO customerCreateDTONotValid = CustomerCreateDTO
+                .builder()
+                .firstName("")
+                .lastName("")
+                .email("m.m@aftermath.com")
+                .storeId(1l)
+                .address(null)
+                .build();;
+
+        Exception result = assertThrows(ConstraintViolationException.class, () -> customerService.createCustomer(customerCreateDTONotValid));
+
+
+
+    }
+
 
     private static List<Customer> createXCustomers(int amount) {
         List<Customer> result = new ArrayList<>();
@@ -84,6 +124,11 @@ public class CustomerServiceIT {
 
         return result;
 
+    }
+
+    @AfterEach
+    public void cleanup() {
+        customerRepository.deleteAll();
     }
 
 
